@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            color: #fff;
+        }
+
+        h1 {
+            color: #1cf878;
+            text-align: end;
+        }
+
+        p {
+            margin-top: 10px;
+            text-shadow: 5px 5px 5px #000;
+            font-size: 2em;
+        }
+        
+        span {
+            color: #1cf878;
+        }
+    </style>
+
+    <h1>Телеграм Чат</h1>
+    <div class="container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const container = document.querySelector(".container");
+
+        setInterval(async () => {
+            const response = await axios.get("ngrok/get-message")
+            if (response) {
+                container.insertAdjacentHTML("afterbegin", `<p><span>${response.data.name}</span> ${response.data.message}</p>`);
+            }
+        }, 15000)
+    </script>
+
+</body>
+</html>
